@@ -18,9 +18,9 @@ export interface AppMap {
     services: Service[]
 }
 export const pagemap : AppMap = {
+  "name": "zones",
   "services": [
     {
-      "name": "zonetype",
       "endpoints": [
         {
           "name": "read"
@@ -37,10 +37,10 @@ export const pagemap : AppMap = {
         {
           "name": "search"
         }
-      ]
+      ],
+      "name": "zonetype"
     },
     {
-      "name": "zone",
       "endpoints": [
         {
           "name": "read"
@@ -57,10 +57,10 @@ export const pagemap : AppMap = {
         {
           "name": "search"
         }
-      ]
+      ],
+      "name": "zone"
     },
     {
-      "name": "accessrole",
       "endpoints": [
         {
           "name": "read"
@@ -77,10 +77,10 @@ export const pagemap : AppMap = {
         {
           "name": "search"
         }
-      ]
+      ],
+      "name": "accessrole"
     },
     {
-      "name": "accesspass",
       "endpoints": [
         {
           "name": "read"
@@ -97,10 +97,10 @@ export const pagemap : AppMap = {
         {
           "name": "search"
         }
-      ]
+      ],
+      "name": "accesspass"
     },
     {
-      "name": "person",
       "endpoints": [
         {
           "name": "read"
@@ -117,10 +117,10 @@ export const pagemap : AppMap = {
         {
           "name": "search"
         }
-      ]
+      ],
+      "name": "person"
     },
     {
-      "name": "consumerapp",
       "endpoints": [
         {
           "name": "read"
@@ -137,10 +137,10 @@ export const pagemap : AppMap = {
         {
           "name": "search"
         }
-      ]
+      ],
+      "name": "consumerapp"
     },
     {
-      "name": "appSecret",
       "endpoints": [
         {
           "name": "read"
@@ -157,10 +157,10 @@ export const pagemap : AppMap = {
         {
           "name": "search"
         }
-      ]
+      ],
+      "name": "appSecret"
     },
     {
-      "name": "auditlog",
       "endpoints": [
         {
           "name": "read"
@@ -177,10 +177,10 @@ export const pagemap : AppMap = {
         {
           "name": "search"
         }
-      ]
+      ],
+      "name": "auditlog"
     },
     {
-      "name": "user",
       "endpoints": [
         {
           "name": "read"
@@ -197,10 +197,10 @@ export const pagemap : AppMap = {
         {
           "name": "search"
         }
-      ]
+      ],
+      "name": "user"
     },
     {
-      "name": "service",
       "endpoints": [
         {
           "name": "read"
@@ -217,10 +217,10 @@ export const pagemap : AppMap = {
         {
           "name": "search"
         }
-      ]
+      ],
+      "name": "service"
     },
     {
-      "name": "route",
       "endpoints": [
         {
           "name": "read"
@@ -237,9 +237,9 @@ export const pagemap : AppMap = {
         {
           "name": "search"
         }
-      ]
+      ],
+      "name": "route"
     }
-  ],
-  "name": "zones"
+  ]
 }
 
