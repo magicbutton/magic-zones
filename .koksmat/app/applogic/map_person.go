@@ -10,8 +10,8 @@ package applogic
 import (
 	//"encoding/json"
 	//"time"
-	"github.com/magicbutton/magic-people/database"
-	"github.com/magicbutton/magic-people/services/models/personmodel"
+	"github.com/magicbutton/magic-zones/database"
+	"github.com/magicbutton/magic-zones/services/models/personmodel"
    
 )
 
@@ -25,12 +25,9 @@ func MapPersonOutgoing(db database.Person) personmodel.Person {
         UpdatedBy: db.UpdatedBy,
                 Name : db.Name,
         Description : db.Description,
-        Email : db.Email,
+        Unique_Person_Id : db.Unique_Person_Id,
         Displayname : db.Displayname,
-        Firstname : db.Firstname,
-        Lastname : db.Lastname,
-        Uniqueid : db.Uniqueid,
-                Nationality_id : db.Nationality_id,
+        Email : db.Email,
 
     }
 }
@@ -44,13 +41,10 @@ func MapPersonIncoming(in personmodel.Person) database.Person {
         UpdatedBy: in.UpdatedBy,
                 Name : in.Name,
         Description : in.Description,
-        Email : in.Email,
+        Unique_Person_Id : in.Unique_Person_Id,
         Displayname : in.Displayname,
-        Firstname : in.Firstname,
-        Lastname : in.Lastname,
-        Uniqueid : in.Uniqueid,
-                Nationality_id : in.Nationality_id,
-        Searchindex : "email:" + in.Email  + "displayname:" + in.Displayname  + "uniqueid:" + in.Uniqueid ,
+        Email : in.Email,
+        Searchindex : in.Name,
 
     }
 }

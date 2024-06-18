@@ -3,8 +3,8 @@ package applogic
 import (
 	"fmt"
 
-	"github.com/magicbutton/magic-people/database/dbhelpers"
-	"github.com/magicbutton/magic-people/utils"
+	"github.com/magicbutton/magic-zones/database/dbhelpers"
+	"github.com/magicbutton/magic-zones/utils"
 )
 
 /**

@@ -11,13 +11,13 @@ package cmds
 import (
 	"context"
 
-	"github.com/magicbutton/magic-people/execution"
-	"github.com/magicbutton/magic-people/utils"
+	"github.com/magicbutton/magic-zones/execution"
+	"github.com/magicbutton/magic-zones/utils"
 )
 
 func HealthCoreversionPost(ctx context.Context, args []string) (*string, error) {
 
-	result, pwsherr := execution.ExecutePowerShell("john", "*", "magic-people", "00-health", "20-coreversion.ps1", "")
+	result, pwsherr := execution.ExecutePowerShell("john", "*", "magic-zones", "00-health", "20-coreversion.ps1", "")
 	if pwsherr != nil {
 		return nil, pwsherr
 	}

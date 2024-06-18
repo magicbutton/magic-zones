@@ -9,14 +9,14 @@ keep: false
     package tests
     import (
         "testing"
-        "github.com/magicbutton/magic-people/services/endpoints/person"
+        "github.com/magicbutton/magic-zones/services/endpoints/person"
         
         "github.com/stretchr/testify/assert"
     )
     
     func TestPersonread(t *testing.T) {
                     
-            result,err := person.PersonRead(".")
+            result,err := person.PersonRead("")
             if err != nil {
                 t.Errorf("Error %s", err)
             }

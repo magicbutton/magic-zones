@@ -189,6 +189,16 @@ entities:
         type: string
         required: true
 
+  service: &service
+    name: service
+    description: service
+    baselineattributes: *recordAttributesWithURL
+    additionalattributes:
+      - name: serviceowner
+        type: reference
+        entity: *person
+        required: true
+
   zonetype: &zonetype
     name: zonetype
     description: zonetype
@@ -219,139 +229,158 @@ entities:
         type: reference
         entity: *person
         required: false
-  jobtype: &jobtype
-    name: jobtype
-    description: jobtype
+      - name: services
+        type: array
+        entity: *service
+        required: false
+  appSecret: &appSecret
+    name: appSecret
+    description: appSecret
     baselineattributes: *recordAttributes
     additionalattributes:
-      - name: unique_jobtype_id
+      - name: appsecret
         type: string
         required: true
+      - name: expires
+        type: datetime
+
+        required: true
+  accessrole: &accessrole
+    name: accessrole
+    description: accessrole
+    baselineattributes: *recordAttributes
+    additionalattributes:
+      - name: status
+        type: string
+        required: true
+  accesspass: &accesspass
+    name: accesspass
+    description: accesspass
+    baselineattributes: *recordAttributes
+    additionalattributes:
+      - name: expires
+        type: datetime
+        required: true
       - name: zone
+        type: reference
+        entity: *zone
+        required: true
+      - name: issuer
+        type: reference
+        entity: *person
+        required: true
+      - name: roles
+        type: array
+        entity: *accessrole
+        required: false
+  user: &user
+    name: user
+    description: user
+    baselineattributes: *recordAttributes
+    additionalattributes:
+      - name: username
+        type: string
+        required: true
+      - name: userhomezone
+        type: reference
+        entity: *zone
+        required: true
+      - name: accesspasses
+        type: array
+        entity: *accesspass
+        required: false
+      - name: blacklistedzones
         type: array
         entity: *zone
         required: false
-      - name: arg0
-        type: string
-        required: false
-      - name: arg1
-        type: string
-        required: false
-      - name: arg2
-        type: string
-        required: false
-      - name: arg3
-        type: string
-        required: false
-      - name: arg4
-        type: string
-        required: false
-      - name: arg5
-        type: string
-        required: false
-      - name: arg6
-        type: string
-        required: false
-      - name: arg7
-        type: string
-        required: false
-      - name: arg8
-        type: string
-        required: false
-      - name: arg9
-        type: string
-        required: false
-      - name: bodytemplate
-        type: string
-        required: false
-
-  job: &job
-    name: job
-    description: job
-    baselineattributes: *recordAttributes
-    additionalattributes:
-      - name: unique_job_id
-        type: string
-        required: true
-      - name: jobtype
-        type: reference
-        entity: *jobtype
-        required: true
-      - name: zone
-        type: reference
-        entity: *zone
-        required: true
       - name: person
         type: reference
         entity: *person
         required: true
-      - name: startdate
-        type: datetime
+
+  app: &consumerapp
+    name: consumerapp
+    description: consumerapp
+    baselineattributes: *recordAttributes
+    additionalattributes:
+      - name: appid
+        type: string
         required: true
-      - name: enddate
-        type: datetime
+      - name: appversion
+        type: string
+        required: true
+      - name: appdescription
+        type: string
+        required: true
+      - name: appurl
+        type: string
+        required: true
+      - name: appicon
+        type: string
+        required: true
+      - name: applogo
+        type: string
+        required: true
+      - name: appowner
+        type: reference
+        entity: *person
+        required: true
+      - name: apphomezone
+        type: reference
+        entity: *zone
+        required: true
+      - name: secrets
+        type: array
+        entity: *appSecret
         required: false
-      - name: status
-        type: string
-        required: true
-      - name: notes
-        type: string
+      - name: accesspasses
+        type: array
+        entity: *accesspass
         required: false
-  service: &service
-    name: service
-    description: service
+  auditlog: &auditlog
+    name: auditlog
+    description: auditlog
     baselineattributes: *recordAttributes
     additionalattributes:
-      - name: unique_service_id
+      - name: action
         type: string
         required: true
-      - name: service
+      - name: entity
         type: string
         required: true
-  key: &key
-    name: key
-    description: key
-    baselineattributes: *recordAttributes
-    additionalattributes:
-      - name: unique_key_id
+      - name: entityid
         type: string
         required: true
-      - name: key
+      - name: requesttype
         type: string
         required: true
-  issuedtoken: &issuedtoken
-    name: issuedtoken
-    description: issuedtoken
-    baselineattributes: *recordAttributes
-    additionalattributes:
-      - name: issuedFor
-        description: |
-          The service which the token has been issued for
+      - name: responsetype
         type: string
         required: true
-      - name: issuedToUPN
-        type: string
+      - name: actor
+        type: reference
+        entity: *person
         required: true
-  package: &package
-    name: package
-    description: package
-    baselineattributes: *recordAttributes
-    additionalattributes:
-      - name: version
-        type: string
-        required: true
-      - name: url
-        type: string
-        required: true
-      - name: checksum
-        type: string
-        required: true
-      - name: status
-        type: string
-        required: true
-      - name: notes
-        type: string
+      - name: details
+        type: json
         required: false
+
+  route: &route
+    name: route
+    description: Route
+    baselineattributes: *recordAttributes
+    additionalattributes:
+      - name: method
+        type: string
+        required: true
+      - name: path
+        type: string
+        required: true
+        unique: true
+      - name: zone
+        type: reference
+        entity: *zone
+        required: true
 
 models:
   itemMethods: &itemMethods
@@ -405,15 +434,6 @@ models:
         type: page
 
 services:
-  - name: person
-    description: Manage persons
-    entity:
-      type: record
-      model: person
-      objectname: Person
-      entity: *person
-    methods: *itemMethods
-
   - name: zonetype
     description: Manage zone types
     entity:
@@ -431,23 +451,67 @@ services:
       objectname: Zone
       entity: *zone
     methods: *itemMethods
-
-  - name: jobtype
-    description: Manage job types
+  - name: accessrole
+    description: Manage access roles
     entity:
       type: record
-      model: jobtype
-      objectname: JobType
-      entity: *jobtype
+      model: accessrole
+      objectname: AccessRole
+      entity: *accessrole
     methods: *itemMethods
 
-  - name: job
-    description: Manage jobs
+  - name: accesspass
+    description: Manage access passes
     entity:
       type: record
-      model: job
-      objectname: Job
-      entity: *job
+      model: accesspass
+      objectname: AccessPass
+      entity: *accesspass
+    methods: *itemMethods
+
+  - name: person
+    description: Manage persons
+    entity:
+      type: record
+      model: person
+      objectname: Person
+      entity: *person
+    methods: *itemMethods
+
+  - name: consumerapp
+    description: Manage api consumers
+    entity:
+      type: record
+      model: consumerapp
+      objectname: ConsumerApp
+      entity: *consumerapp
+    methods: *itemMethods
+
+  - name: appSecret
+    description: Manage app secrets
+    entity:
+      type: record
+      model: appSecret
+      objectname: AppSecret
+      entity: *appSecret
+    methods: *itemMethods
+
+  - name: auditlog
+    description: Manage audit logs
+    entity:
+      type: record
+      model: auditlog
+      objectname: AuditLog
+      entity: *auditlog
+    methods: *itemMethods
+
+  - name: user
+    description: Manage users
+    entity:
+      type: record
+      model: user
+      objectname: User
+      entity: *user
     methods: *itemMethods
 
   - name: service
@@ -455,15 +519,15 @@ services:
     entity:
       type: record
       model: service
-      objectname: Service
+      objectname: Servicexr
       entity: *service
     methods: *itemMethods
 
-  - name: key
-    description: Manage keys
+  - name: route
+    description: Manage routes
     entity:
       type: record
-      model: key
-      objectname: Key
-      entity: *key
+      model: route
+      objectname: Route
+      entity: *route
     methods: *itemMethods

@@ -4,8 +4,8 @@ import (
 	"runtime/debug"
 	"strings"
 
-	"github.com/magicbutton/magic-people/magicapp"
-	"github.com/magicbutton/magic-people/utils"
+	"github.com/magicbutton/magic-zones/magicapp"
+	"github.com/magicbutton/magic-zones/utils"
 )
 
 func main() {
@@ -15,18 +15,18 @@ func main() {
 	s1 := strings.Split(info.Main.Path, "/")
 	name := s1[len(s1)-1]
 	description := `---
-title: magic-people
+title: magic-zones
 description: Describe the main purpose of this kitchen
 ---
 
-# magic-people
+# magic-zones
 `
 	utils.Setup(".env")
-	magicapp.RegisterServeCmd("magic-people", description, "0.0.1", 8080)
+	magicapp.RegisterServeCmd("magic-zones", description, "0.0.1", 8080)
 	magicapp.RegisterCmds()
 	magicapp.RegisterServiceCmd()
 
 	utils.RootCmd.PersistentFlags().BoolVarP(&utils.Verbose, "verbose", "v", false, "verbose output")
 
-	magicapp.Execute(name, "magic-people", "")
+	magicapp.Execute(name, "magic-zones", "")
 }

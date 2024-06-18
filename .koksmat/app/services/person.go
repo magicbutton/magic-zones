@@ -11,10 +11,10 @@ import (
 	"encoding/json"
     "fmt"
 	"log"
-    "github.com/magicbutton/magic-people/services/endpoints/person"
-    "github.com/magicbutton/magic-people/services/models/personmodel"
+    "github.com/magicbutton/magic-zones/services/endpoints/person"
+    "github.com/magicbutton/magic-zones/services/models/personmodel"
 
-	. "github.com/magicbutton/magic-people/utils"
+	. "github.com/magicbutton/magic-zones/utils"
 	"github.com/nats-io/nats.go/micro"
 )
 

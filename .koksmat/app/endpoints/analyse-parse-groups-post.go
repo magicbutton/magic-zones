@@ -16,9 +16,9 @@ import (
 
 	"github.com/swaggest/usecase"
 
-	"github.com/magicbutton/magic-people/execution"
-	"github.com/magicbutton/magic-people/schemas"
-	"github.com/magicbutton/magic-people/utils"
+	"github.com/magicbutton/magic-zones/execution"
+	"github.com/magicbutton/magic-zones/schemas"
+	"github.com/magicbutton/magic-zones/utils"
 )
 
 func AnalyseParseGroupsPost() usecase.Interactor {
@@ -31,12 +31,12 @@ func AnalyseParseGroupsPost() usecase.Interactor {
 			return inputErr
 		}
 
-		inputErr = os.WriteFile(path.Join(utils.WorkDir("magic-people"), "InfocastGroups.json"), body, 0644)
+		inputErr = os.WriteFile(path.Join(utils.WorkDir("magic-zones"), "InfocastGroups.json"), body, 0644)
 		if inputErr != nil {
 			return inputErr
 		}
 
-		_, err := execution.ExecutePowerShell("john", "*", "magic-people", "30-analyse", "10-parse-groups.ps1", "")
+		_, err := execution.ExecutePowerShell("john", "*", "magic-zones", "30-analyse", "10-parse-groups.ps1", "")
 		if err != nil {
 			return err
 		}

@@ -11,8 +11,9 @@ package services
 import (
 	"encoding/json"
 
-	"github.com/magicbutton/magic-people/services/endpoints/app"
-	. "github.com/magicbutton/magic-people/utils"
+	"github.com/magicbutton/magic-zones/services/endpoints/app"
+	"github.com/magicbutton/magic-zones/utils"
+
 	"github.com/nats-io/nats.go/micro"
 )
 
@@ -25,10 +26,10 @@ func HandleAppRequests(req micro.Request) {
 
 	}
 
-	var payload ServiceRequest
+	var payload utils.ServiceRequest
 	_ = json.Unmarshal([]byte(req.Data()), &payload)
 	if len(payload.Args) < 1 {
-		ServiceResponseError(req, "missing command")
+		utils.ServiceResponseError(req, "missing command")
 		return
 
 	}
@@ -37,8 +38,8 @@ func HandleAppRequests(req micro.Request) {
 	// macd.2
 
 	case "select":
-		ProcessAppRequest(req, app.Select)
+		utils.ProcessAppRequest(req, app.Select)
 	default:
-		ServiceResponseError(req, "Unknown command")
+		utils.ServiceResponseError(req, "Unknown command")
 	}
 }

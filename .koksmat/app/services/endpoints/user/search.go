@@ -11,10 +11,10 @@ package user
 import (
     "log"
 
-    "github.com/magicbutton/magic-people/applogic"
-    "github.com/magicbutton/magic-people/database"
-    "github.com/magicbutton/magic-people/services/models/usermodel"
-    . "github.com/magicbutton/magic-people/utils"
+    "github.com/magicbutton/magic-zones/applogic"
+    "github.com/magicbutton/magic-zones/database"
+    "github.com/magicbutton/magic-zones/services/models/usermodel"
+    . "github.com/magicbutton/magic-zones/utils"
 )
 
 func UserSearch(query string) (*Page[usermodel.User], error) {

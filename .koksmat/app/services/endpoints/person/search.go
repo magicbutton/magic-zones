@@ -11,10 +11,10 @@ package person
 import (
     "log"
 
-    "github.com/magicbutton/magic-people/applogic"
-    "github.com/magicbutton/magic-people/database"
-    "github.com/magicbutton/magic-people/services/models/personmodel"
-    . "github.com/magicbutton/magic-people/utils"
+    "github.com/magicbutton/magic-zones/applogic"
+    "github.com/magicbutton/magic-zones/database"
+    "github.com/magicbutton/magic-zones/services/models/personmodel"
+    . "github.com/magicbutton/magic-zones/utils"
 )
 
 func PersonSearch(query string) (*Page[personmodel.Person], error) {

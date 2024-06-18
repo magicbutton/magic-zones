@@ -9,7 +9,7 @@ keep: false
     package tests
     import (
         "testing"
-        "github.com/magicbutton/magic-people/services/endpoints/person"
+        "github.com/magicbutton/magic-zones/services/endpoints/person"
         
         "github.com/stretchr/testify/assert"
     )
@@ -17,7 +17,7 @@ keep: false
     func TestPersondelete(t *testing.T) {
                 // noma4.1.1
         
-        err := person.PersonDelete(".")
+        err := person.PersonDelete("")
         if err != nil {
             t.Errorf("Error %s", err)
         }

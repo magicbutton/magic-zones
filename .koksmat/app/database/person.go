@@ -27,12 +27,9 @@ type Person struct {
     Searchindex string `bun:"searchindex"`
     Name string `bun:"name"`
     Description string `bun:"description"`
-    Email string `bun:"email"`
+    Unique_Person_Id string `bun:"unique_person_id"`
     Displayname string `bun:"displayname"`
-    Firstname string `bun:"firstname"`
-    Lastname string `bun:"lastname"`
-    Uniqueid string `bun:"uniqueid"`
-    Nationality_id int `bun:"nationality_id"`
+    Email string `bun:"email"`
 
 }
 
